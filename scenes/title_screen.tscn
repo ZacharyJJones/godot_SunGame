@@ -1,0 +1,226 @@
+[gd_scene load_steps=11 format=3 uid="uid://cug8gqvnwrn3a"]
+
+[ext_resource type="Script" path="res://scenes/title_screen.gd" id="1_7x1ks"]
+[ext_resource type="AudioStream" uid="uid://dldt62ia3rjuf" path="res://audio/songs/1-01. Elden Ring.mp3" id="1_vvkvo"]
+[ext_resource type="PackedScene" uid="uid://c1q5cv3tcu31b" path="res://scenes/ui_setting.tscn" id="3_oakgb"]
+
+[sub_resource type="Environment" id="Environment_w7smv"]
+background_mode = 1
+
+[sub_resource type="Animation" id="Animation_8lo7m"]
+resource_name = "MoveCamOnLoad"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 130.5), Vector3(0, 0, 130.5), Vector3(0, 20, 190)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.0872665, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../TitleUI:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_0dufl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 130)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0872665, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../TitleUI:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jacnd"]
+_data = {
+"MoveCamOnLoad": SubResource("Animation_8lo7m"),
+"RESET": SubResource("Animation_0dufl")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8p3rp"]
+albedo_color = Color(0.0588235, 0.290196, 0.521569, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8a21t"]
+emission_enabled = true
+emission = Color(0.847059, 0.447059, 0.109804, 1)
+emission_energy_multiplier = 0.6
+
+[sub_resource type="LabelSettings" id="LabelSettings_78orp"]
+font_size = 50
+
+[node name="TitleScreen" type="Node3D"]
+script = ExtResource("1_7x1ks")
+rules_setting_prefab = ExtResource("3_oakgb")
+
+[node name="EldenRingMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_vvkvo")
+autoplay = true
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871558, 0, -0.0871558, 0.996195, 0, 0, 130)
+environment = SubResource("Environment_w7smv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera"]
+libraries = {
+"": SubResource("AnimationLibrary_jacnd")
+}
+autoplay = "MoveCamOnLoad"
+
+[node name="PlanetSphere" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 125)
+radius = 5.0
+radial_segments = 20
+rings = 10
+material = SubResource("StandardMaterial3D_8p3rp")
+
+[node name="SunSphere" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
+radius = 100.0
+radial_segments = 60
+rings = 60
+material = SubResource("StandardMaterial3D_8a21t")
+
+[node name="SunSphere" type="OmniLight3D" parent="SunSphere"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28.2592, 103.909)
+light_color = Color(1, 0.415686, 0, 1)
+light_energy = 25.0
+light_indirect_energy = 25.0
+light_volumetric_fog_energy = 25.0
+light_size = 15.0
+omni_range = 50.0
+
+[node name="TitleUI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TitleUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -290.0
+offset_right = 290.0
+offset_bottom = 259.0
+grow_horizontal = 2
+text = "PETER & ZACK
+> SUN GAME <"
+label_settings = SubResource("LabelSettings_78orp")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Panel" type="Panel" parent="TitleUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.4
+anchor_right = 0.7
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartGame" type="Button" parent="TitleUI/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.2
+grow_horizontal = 2
+grow_vertical = 2
+text = "START GAME"
+
+[node name="SettingsMenu" type="Panel" parent="TitleUI/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.25
+anchor_right = 0.95
+anchor_bottom = 0.95
+
+[node name="Label" type="Label" parent="TitleUI/Panel/SettingsMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_right = 40.0
+offset_bottom = 30.0
+grow_horizontal = 2
+text = "Customize Settings"
+vertical_alignment = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TitleUI/Panel/SettingsMenu"]
+layout_mode = 2
+offset_left = 25.736
+offset_top = 42.422
+offset_right = 388.736
+offset_bottom = 231.422
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="SettingsList" type="VBoxContainer" parent="TitleUI/Panel/SettingsMenu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="TitleUI/Panel/StartGame" to="." method="_on_start_game_pressed"]

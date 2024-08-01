@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c1q5cv3tcu31b"]
+
+[node name="Setting" type="MarginContainer"]
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Hbox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Field 1:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Input" type="LineEdit" parent="Hbox"]
+layout_mode = 2
+alignment = 2
+select_all_on_focus = true

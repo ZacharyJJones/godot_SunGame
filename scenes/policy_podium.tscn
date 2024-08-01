@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh0bd4y7jxx7q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvjvd"]
+albedo_color = Color(0.7, 0.14, 0.14, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lqcir"]
+albedo_color = Color(0.14, 0.7, 0.14, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yreui"]
+albedo_color = Color(0.24, 0.24, 0.8, 1)
+
+[node name="PolicyPodium" type="Node3D"]
+
+[node name="Podium" type="Node3D" parent="."]
+
+[node name="Base" type="CSGCylinder3D" parent="Podium"]
+radius = 2.0
+height = 0.2
+sides = 16
+
+[node name="Columns" type="Node3D" parent="Podium"]
+
+[node name="Col_X_Pos" type="CSGCylinder3D" parent="Podium/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.85, 0)
+radius = 0.4
+height = 1.5
+
+[node name="Col_X_Neg" type="CSGCylinder3D" parent="Podium/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.85, 0)
+radius = 0.4
+height = 1.5
+
+[node name="Col_Z_Neg" type="CSGCylinder3D" parent="Podium/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, -1.25)
+radius = 0.4
+height = 1.5
+
+[node name="Col_Z_Pos" type="CSGCylinder3D" parent="Podium/Columns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 1.25)
+radius = 0.4
+height = 1.5
+
+[node name="Cone" type="Node3D" parent="Podium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59318, 0)
+
+[node name="Layer1" type="CSGCylinder3D" parent="Podium/Cone"]
+radius = 2.0
+height = 0.2
+sides = 16
+
+[node name="Layer2" type="CSGCylinder3D" parent="Podium/Cone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.2, 0)
+radius = 1.9
+height = 0.2
+sides = 16
+
+[node name="Layer3" type="CSGCylinder3D" parent="Podium/Cone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.45, 0)
+radius = 1.8
+height = 0.3
+sides = 16
+
+[node name="Layer4" type="CSGCylinder3D" parent="Podium/Cone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.8, 0)
+radius = 1.7
+height = 0.4
+sides = 16
+
+[node name="Layer5" type="CSGCylinder3D" parent="Podium/Cone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.25, 0)
+radius = 1.5
+height = 0.5
+sides = 16
+
+[node name="Display" type="Node3D" parent="Podium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1, 0)
+
+[node name="Backrest" type="CSGBox3D" parent="Podium/Display"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+size = Vector3(1, 2, 3)
+
+[node name="Option1" type="CSGBox3D" parent="Podium/Display"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.6, 0.95)
+size = Vector3(0.2, 1.25, 0.67)
+material = SubResource("StandardMaterial3D_wvjvd")
+
+[node name="Option2" type="CSGBox3D" parent="Podium/Display"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.6, 0)
+size = Vector3(0.2, 1.25, 0.67)
+material = SubResource("StandardMaterial3D_lqcir")
+
+[node name="Option3" type="CSGBox3D" parent="Podium/Display"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.6, -0.95)
+size = Vector3(0.2, 1.25, 0.67)
+material = SubResource("StandardMaterial3D_yreui")

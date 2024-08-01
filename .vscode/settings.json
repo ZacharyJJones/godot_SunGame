@@ -1,0 +1,8 @@
+{
+  "files.exclude": {
+    "**/.godot": true,
+    "**/*.tscn": true,
+    "**/assets": true,
+    "project.godot": true
+  }
+}

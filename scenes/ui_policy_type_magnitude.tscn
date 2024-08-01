@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://bava33swlfwt"]
+
+[ext_resource type="Texture2D" uid="uid://c8mmu1tyn1qb1" path="res://icons/game_icons_net/peace-dove.png" id="1_n35xg"]
+[ext_resource type="Script" path="res://scenes/ui_policy_type_magnitude.gd" id="1_sckm7"]
+[ext_resource type="Texture2D" uid="uid://ba0ywtrb0fu88" path="res://icons/game_icons_net/tombstone.png" id="2_6ltth"]
+[ext_resource type="Texture2D" uid="uid://b8osqo4hd4ech" path="res://icons/game_icons_net/mighty-force.png" id="3_1ae7x"]
+[ext_resource type="Texture2D" uid="uid://cw7pvxlgguj5o" path="res://icons/game_icons_net/erlenmeyer.png" id="5_3qtft"]
+[ext_resource type="Texture2D" uid="uid://deboq4fyq3lme" path="res://icons/game_icons_net/graduate-cap.png" id="6_cds7q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lpwfh"]
+font_size = 32
+
+[node name="PolicyTypeIndicator" type="Panel"]
+offset_right = 82.0
+offset_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_sckm7")
+images = Array[CompressedTexture2D]([ExtResource("2_6ltth"), ExtResource("3_1ae7x"), ExtResource("1_n35xg"), ExtResource("5_3qtft"), ExtResource("6_cds7q")])
+colors = Array[Color]([Color(0, 0, 0, 1), Color(0.8, 0.16, 0.16, 1), Color(0.373333, 0.8, 0.16, 1), Color(0.16, 0.704, 0.8, 1), Color(0.8, 0.778667, 0.16, 1)])
+
+[node name="Vbox" type="VBoxContainer" parent="."]
+modulate = Color(0.478431, 1, 0.470588, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="Icon" type="TextureRect" parent="Vbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = ExtResource("1_n35xg")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Quantity" type="Label" parent="Vbox"]
+layout_mode = 2
+text = "#"
+label_settings = SubResource("LabelSettings_lpwfh")
+horizontal_alignment = 1
+vertical_alignment = 1
