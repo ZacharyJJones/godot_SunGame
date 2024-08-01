@@ -6,6 +6,9 @@ var State : Enum.GameState
 
 var Rules : GameRules
 
+var FoundingPolicy : Enum.PolicyType
+var FoundingEffects : FoundingEffectsBase
+
 var Deck : Array
 var Discard : Array
 var ActivePolicies : Array
@@ -17,23 +20,30 @@ var Policy_SelectedIndex : int
 
 # GameState.Event
 var Event_Current : GameEvent
+var Event_ActivatedPolicyIndices : Array
+var Event_Rerolls : int
 
 # ==================================
 
 func _init(rules : GameRules):
-	State = Enum.GameState.Undefined
 	Rules = rules
-	Turn = 0
 	
+	State = Enum.GameState.Undefined
 	Health = Rules.Health_Starting
-	ActivePolicies = []
-	RetiredPolicies = []
+	Turn = 0
 	
 	Deck = []
 	Discard = []
-	Policy_Choices = []
+	ActivePolicies = []
+	RetiredPolicies = []
+	FoundingPolicy = Enum.PolicyType.Undefined
+	FoundingEffects = FoundingEffectsBase.new()
 	
-	_beginState_Setup()
+	Policy_Choices = []
+	Event_ActivatedPolicyIndices = []
+	Event_Rerolls = 0
+	
+	_beginState_Founding()
 	pass
 
 # ==================================
@@ -42,7 +52,8 @@ func AdvanceState() -> bool:
 	var _state_map = {
 		Enum.GameState.Won: [func(): return false, func(): return],
 		Enum.GameState.Lost: [func(): return false, func(): return],
-				
+		
+		Enum.GameState.Founding: [_endState_Founding, _beginState_Setup],
 		Enum.GameState.Setup: [_endState_Setup, _beginState_Event],
 		Enum.GameState.Policy: [_endState_Policy, _beginState_Event],
 		Enum.GameState.Event: [_endState_Event, _beginState_Policy]		
@@ -50,10 +61,11 @@ func AdvanceState() -> bool:
 	
 	var result = false
 	if _state_map[State][0].call():
-		_state_map[State][1].call()
 		result = true
-		pass
 	
+	# This check goes here BECAUSE it prevents the next state from...
+	# ... executing it's setup code when the game has ended. e.g. Draft choices
+	# ... will not be presented going from Event -> Won/Lost State -> Policy phase
 	if not IsOver():
 		if (Health >= Rules.Health_ToWin 
 			or Turn >= Rules.TurnsToWin):
@@ -62,55 +74,81 @@ func AdvanceState() -> bool:
 			State = Enum.GameState.Lost		
 		pass
 	
+	if result:
+		_state_map[State][1].call()
+	
+	
 	return result
+
+func _beginState_Founding():
+	State = Enum.GameState.Founding
+	Policy_SelectedIndex = -1
+	var vals = Enum.PolicyType.values()
+	for i in range(1, vals.size()):
+		Policy_Choices.append(Policy.new(vals[i]))
+	pass
+func _endState_Founding() -> bool:
+	if not _endState_Policy():
+		return false
+	
+	# cleanup, since I hacked the policy phase to do this
+	Discard.clear()
+	
+	# Take the choice and set as founding!
+	FoundingPolicy = ActivePolicies.pop_back().Type	
+	FoundingEffects = FoundingEffectsBase.GetFoundingEffects(FoundingPolicy)
+	
+	# Now set up the deck
+	Deck = GameContent.GetStartingDeck(FoundingPolicy)
+	Deck.shuffle()
+	return true
 
 func _beginState_Setup():
 	_beginState_Policy()
 	State = Enum.GameState.Setup
 func _endState_Setup() -> bool:
-	if not _endState_Policy():
-		return false
-	
-	if ActivePolicies.size() < Rules.PolicyTrackSlots:
+	if not _endState_Policy(): return false	
+	if ActivePolicies.size() < GetMaxActivePolicies():
 		_beginState_Setup()
 		return false
-	
 	return true
 	
 func _beginState_Policy():
 	State = Enum.GameState.Policy
 	Policy_SelectedIndex = -1
 	
-	# temp options provided
-	var enum_keys = Enum.PolicyType.keys()
-	for i in range(1, enum_keys.size()):
-		Policy_Choices.append(Policy.new(Enum.PolicyType[enum_keys[i]]))
-		pass
-	
-	# Enforce policy track slots restriction
-	#while Policy_Choices.size() < Rules.PoliciesDrawnWhenChoosing:
-		#Policy_Choices.append(Deck.pop_front())
-	
+	while Policy_Choices.size() < Rules.PoliciesDrawnDrafting:
+		Policy_Choices.append(Deck.pop_front())
+		if Deck.size() == 0:
+			Discard.shuffle()
+			Deck = Discard
+			Discard = []
 	pass
 func _endState_Policy() -> bool:
 	if Policy_SelectedIndex == -1:
 		return false
 	
-	# Resolve chosen policy
-	ActivePolicies.push_front(Policy_Choices.pop_at(Policy_SelectedIndex))
+	# Move chosen policy to active zone
+	var chosen = Policy_Choices.pop_at(Policy_SelectedIndex)
+	FoundingEffects.OnPolicyDraft(self, chosen)
+	ActivePolicies.push_front(chosen)
+	
+	# Discard others
 	for i in range(Policy_Choices.size()):
 		Discard.append(Policy_Choices.pop_back())
 	
 	# Enforce policy track slots restriction
-	while ActivePolicies.size() > Rules.PolicyTrackSlots:
-		RetiredPolicies.append(ActivePolicies.pop_back())
+	while ActivePolicies.size() > GetMaxActivePolicies():
+		var retired = ActivePolicies.pop_back()
+		FoundingEffects.OnPolicyExpire(self, retired)
+		RetiredPolicies.append(retired)
 	
 	return true
 	
 func _beginState_Event():
 	Turn += 1
+	Event_Current = _generateEvent()
 	State = Enum.GameState.Event
-	Event_Current = GameContent.GenerateEvent()
 	pass
 func _endState_Event() -> bool:
 	var active_of_type = GetActivePolicyTypeMagnitude(Event_Current.Type)
@@ -118,13 +156,33 @@ func _endState_Event() -> bool:
 		Health += Event_Current.Magnitude
 	else:
 		Health -= (Event_Current.Magnitude - active_of_type)
+	
+	# Mark and clear activated policies
+	for i in range(Event_ActivatedPolicyIndices.size()):
+		ActivePolicies[Event_ActivatedPolicyIndices[i]].HasBeenActivated = true
+	Event_ActivatedPolicyIndices.clear()
+	
 	return true
 
 
 # ==================================
 
 func GetActivePolicyTypeMagnitude(type : Enum.PolicyType):
-	return ActivePolicies.filter(func(p): return p.Type == type).size()
+	var total = 0
+	for i in range(ActivePolicies.size()):
+		var policy = ActivePolicies[i]
+		if policy.Type == type:	total += 1
+		if policy.CanBeActivated() and Event_ActivatedPolicyIndices.any(func(x): return x == i):
+			total += policy.ActivatedTypes.filter(func(x): return x == type).size()
+	return total
+
+func RerollEvent():
+	if Event_Rerolls < 1: return
+	Event_Current = _generateEvent()
+	Event_Rerolls -= 1
+
+func _generateEvent() -> GameEvent:
+	return FoundingEffects.ModifyEvent(self, GameContent.GenerateEvent())
 
 # ==================================
 
@@ -133,7 +191,8 @@ func IsWon() -> bool: return State == Enum.GameState.Won
 func IsLost() -> bool: return State == Enum.GameState.Lost
 func IsOver() -> bool: return IsWon() or IsLost()
 
-
+func GetMaxActivePolicies() -> int:
+	return Rules.PolicyTrackSlots + FoundingEffects.MaxActivePolicyModifier(self)
 
 
 

@@ -1,9 +1,5 @@
 class_name Enum
 
-static func GetRandomDefined(enum_name):
-	var keys = enum_name.keys()
-	return enum_name[keys[1 + randi() % (keys.size() - 1)]]
-
 enum PolicyType {
 	Undefined,
 	
@@ -19,6 +15,7 @@ enum GameState {
 	Won,
 	Lost,
 	
+	Founding,
 	Setup,
 	
 	Policy,
