@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cwj60j6dcj765"]
+[gd_scene load_steps=19 format=3 uid="uid://cwj60j6dcj765"]
 
 [ext_resource type="PackedScene" uid="uid://dh0bd4y7jxx7q" path="res://scenes/policy_podium.tscn" id="1_a72w0"]
 [ext_resource type="Texture2D" uid="uid://ba0ywtrb0fu88" path="res://icons/game_icons_net/tombstone.png" id="2_36oom"]
@@ -87,6 +87,9 @@ shadow_offset = Vector2(5, 5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3fffe"]
 font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_d2pvu"]
+font_size = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_drftf"]
 bg_color = Color(0.317647, 0.552941, 0.662745, 1)
@@ -232,12 +235,26 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.6
 anchor_right = 1.0
-anchor_bottom = 0.7
+anchor_bottom = 0.65
 offset_left = 10.0
 offset_top = 10.0
 offset_right = -10.0
 text = "ACTIVE POLICIES"
 label_settings = SubResource("LabelSettings_3fffe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActivePoliciesTitle2" type="Label" parent="GameplayUI/DraftsAndActive"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.65
+anchor_right = 1.0
+anchor_bottom = 0.7
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+text = "CTRL+Click to deselect, or select multiple"
+label_settings = SubResource("LabelSettings_d2pvu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -288,12 +305,14 @@ uppercase = true
 [node name="HealthReadout" type="Label" parent="GameplayUI/SocietyInfo"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -68.0
-offset_top = 45.0
-offset_right = 69.0
-offset_bottom = 75.0
+anchor_left = 0.334
+anchor_top = 0.133
+anchor_right = 0.668
+anchor_bottom = 0.224
+offset_left = 0.19278
+offset_top = -0.0604019
+offset_right = -0.0144348
+offset_bottom = -0.891205
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.129412, 0.129412, 1)
 text = "10 / 25hp"
@@ -350,12 +369,14 @@ expand_mode = 3
 [node name="TurnsReadout" type="Label" parent="GameplayUI/SocietyInfo"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -67.0
-offset_top = 103.0
-offset_right = 68.0
-offset_bottom = 134.0
+anchor_left = 0.337
+anchor_top = 0.304
+anchor_right = 0.666
+anchor_bottom = 0.396
+offset_left = -0.0396118
+offset_top = 0.00479126
+offset_right = -0.19281
+offset_bottom = -0.16481
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.129412, 0.129412, 1)
 text = "0 / 10 turns"
@@ -396,12 +417,14 @@ expand_mode = 3
 [node name="ActivePolicyAmounts" type="Label" parent="GameplayUI/SocietyInfo"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -106.0
-offset_top = 166.0
-offset_right = 109.0
-offset_bottom = 197.0
+anchor_left = 0.242
+anchor_top = 0.49
+anchor_right = 0.765
+anchor_bottom = 0.581
+offset_left = -0.0136185
+offset_top = -0.0120087
+offset_right = 0.13797
+offset_bottom = 0.157181
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.129412, 0.129412, 1)
 text = "Active Policy Counts"
@@ -554,20 +577,45 @@ grow_vertical = 0
 text = "GAME_STATE_LABEL"
 horizontal_alignment = 1
 
+[node name="FoundingPolicyFrame" type="HBoxContainer" parent="GameplayUI/RulesReference"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.25
+anchor_right = 0.8
+anchor_bottom = 0.5
+offset_left = -1.14441e-05
+offset_right = -1.52588e-05
+mouse_filter = 0
+
 [node name="RulesLabel" type="Label" parent="GameplayUI/RulesReference"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.2
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.3
+anchor_bottom = 0.6
 offset_left = 10.0
 offset_top = 10.0
 offset_right = -10.0
-text = "Rules & Info"
+text = "Founding Effects"
 label_settings = SubResource("LabelSettings_quj2w")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="FoundingEffectLabel" type="Label" parent="GameplayUI/RulesReference"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.6
+anchor_right = 1.0
+anchor_bottom = 0.8
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+text = "Rules & Info"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ReturnMenuButton" type="Button" parent="GameplayUI/RulesReference"]
 layout_mode = 1
@@ -576,19 +624,11 @@ anchor_left = 0.05
 anchor_top = 0.9
 anchor_right = 0.95
 anchor_bottom = 0.98
+offset_left = 2.76566e-05
+offset_right = 3.05176e-05
 grow_horizontal = 2
 grow_vertical = 0
 text = "Return To Main Menu"
-
-[node name="FoundingPolicyFrame" type="HBoxContainer" parent="GameplayUI/RulesReference"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.2
-anchor_top = 0.5
-anchor_right = 0.8
-anchor_bottom = 0.7
-mouse_filter = 0
 
 [connection signal="item_activated" from="GameplayUI/DraftsAndActive/DraftItemList" to="GameplayUI" method="_on_draft_item_list_item_activated"]
 [connection signal="multi_selected" from="GameplayUI/DraftsAndActive/ActivePolicyItemList" to="GameplayUI" method="_on_active_policy_item_list_multi_selected"]

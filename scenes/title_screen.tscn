@@ -210,11 +210,16 @@ text = "Customize Settings"
 vertical_alignment = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TitleUI/Panel/SettingsMenu"]
-layout_mode = 2
-offset_left = 25.736
-offset_top = 42.422
-offset_right = 388.736
-offset_bottom = 231.422
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.15
+anchor_right = 0.95
+anchor_bottom = 0.95
+offset_left = 0.0233631
+offset_top = 0.0104065
+offset_right = 0.143402
+offset_bottom = -0.0954132
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0

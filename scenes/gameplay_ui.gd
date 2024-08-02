@@ -18,6 +18,16 @@ extends Control
 @onready var founding_policy_frame = $RulesReference/FoundingPolicyFrame
 var founding_policy_prefab
 
+# Society Info Area
+@onready var health_readout = $SocietyInfo/HealthReadout
+@onready var health_bar = $SocietyInfo/HealthBar
+
+@onready var turns_readout = $SocietyInfo/TurnsReadout
+@onready var turns_bar = $SocietyInfo/TurnsBar
+
+@onready var active_policy_readout_area = $SocietyInfo/ActivePolicyReadoutArea
+var active_policy_prefabs
+
 # Drafts / Active Policies Area
 @onready var drafts_list = $DraftsAndActive/DraftItemList
 @onready var active_policy_item_list = $DraftsAndActive/ActivePolicyItemList
@@ -32,15 +42,8 @@ var founding_policy_prefab
 
 @onready var event_policy_threshold_prefab
 
-# Society Info Area
-@onready var health_readout = $SocietyInfo/HealthReadout
-@onready var health_bar = $SocietyInfo/HealthBar
-
-@onready var turns_readout = $SocietyInfo/TurnsReadout
-@onready var turns_bar = $SocietyInfo/TurnsBar
-
-@onready var active_policy_readout_area = $SocietyInfo/ActivePolicyReadoutArea
-var active_policy_prefabs
+# Etc Info Area
+@onready var founding_effect_label = $RulesReference/FoundingEffectLabel
 
 
 func _ready():
@@ -141,6 +144,7 @@ func RefreshUI_Etc():
 		founding_policy_prefab.Initialize(game.FoundingPolicy)
 		founding_policy_prefab.SetLabel("Founding")
 	
+	founding_effect_label.text = _get_founding_effect_hint_text(game.FoundingPolicy)
 	pass
 
 # ======================================================
@@ -150,6 +154,16 @@ func _policy_as_str(policy : Policy):
 	if (policy.ActivatedTypes.size() > 0):
 		active_types = " (%s)" % ", ".join(policy.ActivatedTypes.map(func(x): return _enum_keys[x]))
 	return "%s%s" % [_enum_keys[policy.Type], active_types]
+
+func _get_founding_effect_hint_text(type : Enum.PolicyType):
+	var map = {
+		Enum.PolicyType.Undefined: "",
+		Enum.PolicyType.War: "With 2+ active War policies:\nEvent magnitude reduced by 1.",
+		Enum.PolicyType.Peace: "With 2+ active Peace policies:\n+1 active policy limit.",
+		Enum.PolicyType.Science: "When Science policy expires:\nGain 1 reroll credit (max 1).",
+		Enum.PolicyType.Education: "When drafting Education policy:\nActivated policy grants ALL types.",
+	}
+	return map[type]
 
 # ======================================================
 
