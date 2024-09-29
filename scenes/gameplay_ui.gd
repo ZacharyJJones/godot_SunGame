@@ -130,7 +130,7 @@ func RefreshUI_Event():
 		
 	event_details_area.set_visible(true)
 	event_name.text = game.Event_Current.Name
-	event_policy_threshold_prefab.SetLabel(game.Event_Current.Magnitude)
+	event_policy_threshold_prefab.SetLabel(game.EventMagnitudeWithModifiers())
 	event_policy_threshold_prefab.Initialize(game.Event_Current.Type)
 	
 	pass
@@ -158,10 +158,10 @@ func _policy_as_str(policy : Policy):
 func _get_founding_effect_hint_text(type : Enum.PolicyType):
 	var map = {
 		Enum.PolicyType.Undefined: "",
-		Enum.PolicyType.War: "With 2+ active War policies:\nEvent magnitude reduced by 1.",
+		Enum.PolicyType.War: "With 2+ active War effect:\nEvent magnitude reduced by 1.\n(Activated policies count)",
 		Enum.PolicyType.Peace: "With 2+ active Peace policies:\n+1 active policy limit.",
 		Enum.PolicyType.Science: "When Science policy expires:\nGain 1 reroll credit (max 1).",
-		Enum.PolicyType.Education: "When drafting Education policy:\nActivated policy grants ALL types.",
+		Enum.PolicyType.Faith: "When drafting Faith policy:\nActivated policy grants ALL types.",
 	}
 	return map[type]
 
@@ -170,7 +170,7 @@ func _get_founding_effect_hint_text(type : Enum.PolicyType):
 # Draft selection
 func _on_draft_item_list_item_activated(index):
 	game.Policy_SelectedIndex = index
-	var result = game.AdvanceState()
+	game.AdvanceState()
 	RefreshUI()
 
 func _on_return_menu_button_pressed():
@@ -185,8 +185,9 @@ func _on_event_continue_button_pressed():
 	RefreshUI()
 
 # when active policies are selected (to be activated)
-func _on_active_policy_item_list_multi_selected(index, selected):
+func _on_active_policy_item_list_multi_selected(_index, _selected):
 	if (game.State == Enum.GameState.Event):
 		game.Event_ActivatedPolicyIndices = active_policy_item_list.get_selected_items()
 		RefreshUI_Society()
+		RefreshUI_Event()
 

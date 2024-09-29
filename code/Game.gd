@@ -152,10 +152,11 @@ func _beginState_Event():
 	pass
 func _endState_Event() -> bool:
 	var active_of_type = GetActivePolicyTypeMagnitude(Event_Current.Type)
-	if active_of_type >= Event_Current.Magnitude:
-		Health += Event_Current.Magnitude
+	var event_magnitude = EventMagnitudeWithModifiers()
+	if active_of_type >= event_magnitude:
+		Health += Event_Current.Reward
 	else:
-		Health -= (Event_Current.Magnitude - active_of_type)
+		Health -= (event_magnitude - active_of_type)
 	
 	# Mark and clear activated policies
 	for i in range(Event_ActivatedPolicyIndices.size()):
@@ -186,6 +187,8 @@ func _generateEvent() -> GameEvent:
 
 # ==================================
 
+func EventMagnitudeWithModifiers() -> int: 
+	return Event_Current.Magnitude + FoundingEffects.EventMagnitudeModifier(self)
 
 func IsWon() -> bool: return State == Enum.GameState.Won
 func IsLost() -> bool: return State == Enum.GameState.Lost

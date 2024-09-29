@@ -6,7 +6,7 @@ enum PolicyType {
 	War,
 	Peace,
 	Science,
-	Education
+	Faith
 }
 
 enum GameState {

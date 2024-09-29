@@ -26,14 +26,14 @@ func _init(
 
 # ============================
 
-func Serialize():
-
-	var rule = GameRules.new()
-	
-	var dict = inst_to_dict(rule)
-	var keys = dict.keys().filter(func(k): return k[0] != "@")
-	for i in keys.size():
-		print("%s: %s" % [keys[i], dict[keys[i]]])
-	
-	var obj : GameRules = dict_to_inst(dict)
-	pass
+#func Serialize():
+#
+	#var rule = GameRules.new()
+	#
+	#var dict = inst_to_dict(rule)
+	#var keys = dict.keys().filter(func(k): return k[0] != "@")
+	#for i in keys.size():
+		#print("%s: %s" % [keys[i], dict[keys[i]]])
+	#
+	#var obj : GameRules = dict_to_inst(dict)
+	#pass

@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cug8gqvnwrn3a"]
+[gd_scene load_steps=12 format=3 uid="uid://cug8gqvnwrn3a"]
 
 [ext_resource type="Script" path="res://scenes/title_screen.gd" id="1_7x1ks"]
 [ext_resource type="AudioStream" uid="uid://dldt62ia3rjuf" path="res://audio/songs/1-01. Elden Ring.mp3" id="1_vvkvo"]
 [ext_resource type="PackedScene" uid="uid://c1q5cv3tcu31b" path="res://scenes/ui_setting.tscn" id="3_oakgb"]
+[ext_resource type="Script" path="res://scenes/AnimationSkipper.gd" id="4_14lhs"]
 
 [sub_resource type="Environment" id="Environment_w7smv"]
 background_mode = 1
@@ -120,6 +121,11 @@ libraries = {
 "": SubResource("AnimationLibrary_jacnd")
 }
 autoplay = "MoveCamOnLoad"
+
+[node name="AnimationSkipper" type="Node" parent="Camera/AnimationPlayer"]
+script = ExtResource("4_14lhs")
+animation_name = "MoveCamOnLoad"
+delete_after_skip = true
 
 [node name="PlanetSphere" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 125)

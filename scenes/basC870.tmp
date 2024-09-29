@@ -1,0 +1,637 @@
+[gd_scene load_steps=19 format=3 uid="uid://cwj60j6dcj765"]
+
+[ext_resource type="PackedScene" uid="uid://dh0bd4y7jxx7q" path="res://scenes/policy_podium.tscn" id="1_a72w0"]
+[ext_resource type="Texture2D" uid="uid://ba0ywtrb0fu88" path="res://icons/game_icons_net/tombstone.png" id="2_36oom"]
+[ext_resource type="Script" path="res://scenes/gameplay_ui.gd" id="2_v3u17"]
+[ext_resource type="Texture2D" uid="uid://p75baksldtnv" path="res://icons/game_icons_net/crown.png" id="3_24f8q"]
+[ext_resource type="PackedScene" uid="uid://bava33swlfwt" path="res://scenes/ui_policy_type_display.tscn" id="3_k8qu2"]
+
+[sub_resource type="Environment" id="Environment_2fod0"]
+background_mode = 1
+background_color = Color(0.18, 0.29, 0.3, 1)
+
+[sub_resource type="Animation" id="Animation_pxyfr"]
+resource_name = "MoveOnLoad"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 4), Vector3(0, 0, 4), Vector3(0, 5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.523599, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k7sbj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3h83p"]
+_data = {
+"MoveOnLoad": SubResource("Animation_pxyfr"),
+"RESET": SubResource("Animation_k7sbj")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hlh68"]
+bg_color = Color(0.280871, 0.601066, 0.306949, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.384314, 0.901961, 0.196078, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 10
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3fffe"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_d2pvu"]
+font_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_drftf"]
+bg_color = Color(0.317647, 0.552941, 0.662745, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.278431, 0.713726, 0.788235, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 10
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_quj2w"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_hgoi2"]
+font_size = 22
+font_color = Color(1, 0.211765, 0.211765, 1)
+outline_color = Color(0.313726, 0.313726, 0.313726, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.337255)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cxp6j"]
+font_size = 22
+outline_color = Color(0.313726, 0.313726, 0.313726, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.337255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ts4gs"]
+bg_color = Color(0.513726, 0.443137, 0.858824, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.752941, 0.658824, 0.835294, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 10
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p77o1"]
+bg_color = Color(0.584314, 0.521569, 0.180392, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.823529, 0.764706, 0.054902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 10
+shadow_offset = Vector2(5, 5)
+
+[node name="BasicGameplay" type="Node3D"]
+
+[node name="PolicyPodium" parent="." instance=ExtResource("1_a72w0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+visible = false
+environment = SubResource("Environment_2fod0")
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D"]
+libraries = {
+"": SubResource("AnimationLibrary_3h83p")
+}
+autoplay = "MoveOnLoad"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.717567, 0.696489, 0, -0.696489, 0.717567, 0, 0, 0)
+
+[node name="GameplayUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_v3u17")
+policy_type_display_prefab = ExtResource("3_k8qu2")
+
+[node name="DraftsAndActive" type="Panel" parent="GameplayUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.3
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hlh68")
+
+[node name="DraftsTitle" type="Label" parent="GameplayUI/DraftsAndActive"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+text = "CARD DRAFTS"
+label_settings = SubResource("LabelSettings_3fffe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DraftItemList" type="ItemList" parent="GameplayUI/DraftsAndActive"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.1
+anchor_right = 0.95
+anchor_bottom = 0.3
+grow_horizontal = 2
+grow_vertical = 2
+item_count = 3
+item_0/text = "Option 1"
+item_1/text = "Option 2"
+item_2/text = "Option 3"
+
+[node name="SelectionGuideLabel" type="Label" parent="GameplayUI/DraftsAndActive"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.3
+anchor_right = 0.95
+anchor_bottom = 0.35
+text = "^ Double-Click to choose ^"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActivePoliciesTitle" type="Label" parent="GameplayUI/DraftsAndActive"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.6
+anchor_right = 1.0
+anchor_bottom = 0.65
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+text = "ACTIVE POLICIES"
+label_settings = SubResource("LabelSettings_3fffe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActivePoliciesTitle2" type="Label" parent="GameplayUI/DraftsAndActive"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.65
+anchor_right = 1.0
+anchor_bottom = 0.7
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+text = "CTRL+Click to deselect, or select multiple"
+label_settings = SubResource("LabelSettings_d2pvu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActivePolicyItemList" type="ItemList" parent="GameplayUI/DraftsAndActive"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.7
+anchor_right = 0.95
+anchor_bottom = 0.98
+grow_horizontal = 2
+grow_vertical = 2
+select_mode = 1
+allow_reselect = true
+item_count = 3
+item_0/text = "Option 1"
+item_1/text = "Option 2"
+item_2/text = "Option 3"
+
+[node name="SocietyInfo" type="Panel" parent="GameplayUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.6
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_drftf")
+
+[node name="SocietyTitle" type="Label" parent="GameplayUI/SocietyInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+text = "Society"
+label_settings = SubResource("LabelSettings_quj2w")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="HealthReadout" type="Label" parent="GameplayUI/SocietyInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.334
+anchor_top = 0.133
+anchor_right = 0.668
+anchor_bottom = 0.224
+offset_left = 0.19278
+offset_top = -0.0604019
+offset_right = -0.0144348
+offset_bottom = -0.891205
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.129412, 0.129412, 1)
+text = "10 / 25hp"
+label_settings = SubResource("LabelSettings_hgoi2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="HSlider" parent="GameplayUI/SocietyInfo"]
+self_modulate = Color(0.988235, 0.266667, 0.521569, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.2
+anchor_right = 0.95
+anchor_bottom = 0.3
+max_value = 25.0
+value = 10.0
+editable = false
+scrollable = false
+tick_count = 6
+
+[node name="LoseIcon" type="TextureRect" parent="GameplayUI/SocietyInfo/HealthBar"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.005
+anchor_bottom = 0.5
+offset_left = -12.14
+offset_top = -19.7
+offset_right = 26.0114
+offset_bottom = 20.3
+grow_vertical = 2
+texture = ExtResource("2_36oom")
+expand_mode = 3
+
+[node name="WinIcon" type="TextureRect" parent="GameplayUI/SocietyInfo/HealthBar"]
+self_modulate = Color(0.921569, 0.780392, 0, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -23.86
+offset_top = -20.7
+offset_right = 16.14
+offset_bottom = 19.3
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("3_24f8q")
+expand_mode = 3
+
+[node name="TurnsReadout" type="Label" parent="GameplayUI/SocietyInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.337
+anchor_top = 0.304
+anchor_right = 0.666
+anchor_bottom = 0.396
+offset_left = -0.0396118
+offset_top = 0.00479126
+offset_right = -0.19281
+offset_bottom = -0.16481
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.129412, 0.129412, 1)
+text = "0 / 10 turns"
+label_settings = SubResource("LabelSettings_cxp6j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TurnsBar" type="HSlider" parent="GameplayUI/SocietyInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.4
+anchor_right = 0.95
+anchor_bottom = 0.5
+max_value = 25.0
+value = 10.0
+editable = false
+scrollable = false
+tick_count = 11
+
+[node name="WinIcon" type="TextureRect" parent="GameplayUI/SocietyInfo/TurnsBar"]
+self_modulate = Color(0.921569, 0.780392, 0, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -23.86
+offset_top = -20.7
+offset_right = 16.14
+offset_bottom = 19.3
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("3_24f8q")
+expand_mode = 3
+
+[node name="ActivePolicyAmounts" type="Label" parent="GameplayUI/SocietyInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.242
+anchor_top = 0.49
+anchor_right = 0.765
+anchor_bottom = 0.581
+offset_left = -0.0136185
+offset_top = -0.0120087
+offset_right = 0.13797
+offset_bottom = 0.157181
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.129412, 0.129412, 1)
+text = "Active Policy Counts"
+label_settings = SubResource("LabelSettings_cxp6j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActivePolicyReadoutArea" type="HBoxContainer" parent="GameplayUI/SocietyInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.6
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="Event" type="Panel" parent="GameplayUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.6
+anchor_right = 0.7
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ts4gs")
+
+[node name="EventTitle" type="Label" parent="GameplayUI/Event"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+text = "Event"
+label_settings = SubResource("LabelSettings_quj2w")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="EventDetailsArea" type="Panel" parent="GameplayUI/Event"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.25
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EventRerollButton" type="Button" parent="GameplayUI/Event/EventDetailsArea"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 9.0
+offset_top = -39.1
+offset_right = 106.0
+offset_bottom = -8.10001
+grow_horizontal = 0
+text = "Reroll"
+
+[node name="EventContinueButton" type="Button" parent="GameplayUI/Event/EventDetailsArea"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -106.86
+offset_top = -39.1
+offset_right = -9.85995
+offset_bottom = -8.10001
+grow_horizontal = 0
+text = "Continue"
+
+[node name="EventName" type="Label" parent="GameplayUI/Event/EventDetailsArea"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "EVENT_TITLE_HERE"
+horizontal_alignment = 1
+
+[node name="EventThresholdsArea" type="HBoxContainer" parent="GameplayUI/Event/EventDetailsArea"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.15
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="RulesReference" type="Panel" parent="GameplayUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p77o1")
+
+[node name="GameStateArea" type="Panel" parent="GameplayUI/RulesReference"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.2
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="GameplayUI/RulesReference/GameStateArea"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -79.02
+offset_right = 78.98
+offset_bottom = 41.0
+grow_horizontal = 2
+text = "Current Game State:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameState" type="Label" parent="GameplayUI/RulesReference/GameStateArea"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -77.02
+offset_top = -33.7
+offset_right = 76.98
+offset_bottom = 0.300003
+grow_horizontal = 2
+grow_vertical = 0
+text = "GAME_STATE_LABEL"
+horizontal_alignment = 1
+
+[node name="FoundingPolicyFrame" type="HBoxContainer" parent="GameplayUI/RulesReference"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.25
+anchor_right = 0.8
+anchor_bottom = 0.5
+offset_left = -1.14441e-05
+offset_right = -1.52588e-05
+mouse_filter = 0
+
+[node name="RulesLabel" type="Label" parent="GameplayUI/RulesReference"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.6
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+text = "Founding Effects"
+label_settings = SubResource("LabelSettings_quj2w")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="FoundingEffectLabel" type="Label" parent="GameplayUI/RulesReference"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.6
+anchor_right = 1.0
+anchor_bottom = 0.8
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+text = "Rules & Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReturnMenuButton" type="Button" parent="GameplayUI/RulesReference"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.9
+anchor_right = 0.95
+anchor_bottom = 0.98
+offset_left = 2.76566e-05
+offset_right = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 0
+text = "Return To Main Menu"
+
+[connection signal="item_activated" from="GameplayUI/DraftsAndActive/DraftItemList" to="GameplayUI" method="_on_draft_item_list_item_activated"]
+[connection signal="multi_selected" from="GameplayUI/DraftsAndActive/ActivePolicyItemList" to="GameplayUI" method="_on_active_policy_item_list_multi_selected"]
+[connection signal="pressed" from="GameplayUI/Event/EventDetailsArea/EventRerollButton" to="GameplayUI" method="_on_event_reroll_button_pressed"]
+[connection signal="pressed" from="GameplayUI/Event/EventDetailsArea/EventContinueButton" to="GameplayUI" method="_on_event_continue_button_pressed"]
+[connection signal="pressed" from="GameplayUI/RulesReference/ReturnMenuButton" to="GameplayUI" method="_on_return_menu_button_pressed"]
