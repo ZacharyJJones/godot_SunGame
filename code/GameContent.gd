@@ -4,7 +4,7 @@ class_name GameContent
 static func GetTrials():
 	return [
 		_makeEvent(
-			"Really Angry Bears", 
+			"Really Angry Bears",
 			"A horde of bears burned to a crisp, kept alive purely by the rage contained in their furry bodies.",
 			[
 				_makeEventFailure("Endure the Rampage", -2),
@@ -13,7 +13,7 @@ static func GetTrials():
 			]
 		),
 		_makeEvent(
-			"Crisis of Faith", 
+			"Crisis of Faith",
 			"The community is overwhelmed by nightmares, and fits of blindness run rampant, all despite the solar priest’s attempts to quell it.",
 			[
 				_makeEventFailure("Give into despair", -2),
@@ -22,7 +22,7 @@ static func GetTrials():
 			]
 		),
 		_makeEvent(
-			"Smotherwitch Kidnapping", 
+			"Smotherwitch Kidnapping",
 			"The nearby swamp's smotherwitch coven has kidnapped members of the community for a sacrificial ritual.",
 			[
 				_makeEventFailure("Relinquish Hope", -2),
@@ -31,7 +31,7 @@ static func GetTrials():
 			]
 		),
 		_makeEvent(
-			"Elemental Font", 
+			"Elemental Font",
 			"An ancient wizard's tower begins to conjure strange and powerful elementals.",
 			[
 				_makeEventFailure("Wait out the Onslaught", -2),
@@ -40,7 +40,7 @@ static func GetTrials():
 			]
 		),
 		_makeEvent(
-			"Stochastic Void", 
+			"Stochastic Void",
 			"A gateway to a realm of nonexistence opens and begins wandering in the society's territory, threatening its resources and people.",
 			[
 				_makeEventFailure("Avoid the Abyss", -2),
@@ -49,7 +49,7 @@ static func GetTrials():
 			]
 		),
 		_makeEvent(
-			"Dreams of Rampage", 
+			"Dreams of Rampage",
 			"Everpresent violent nightmares about a great horned figure have spread across the community, bringing doomsaying and distress.",
 			[
 				_makeEventFailure("Shun the Doubts", -2),
@@ -58,7 +58,7 @@ static func GetTrials():
 			]
 		),
 		_makeEvent(
-			"Revision Virus", 
+			"Revision Virus",
 			"Vault exploration has released a disease that rewrites random bits of a victim's genes.",
 			[
 				_makeEventFailure("Isolate the Sick", -2),
@@ -67,16 +67,16 @@ static func GetTrials():
 			]
 		),
 		_makeEvent(
-			"Everything But Hope", 
+			"Everything But Hope",
 			"Unwitting cultists rip a hole into a nightmarish dimension, releasing untold evils.",
 			[
-				_makeEventFailure("Embrace Exile", -2),				
+				_makeEventFailure("Embrace Exile", -2),
 				_makeEventSuccess("Bargain for Survival", Enum.PolicyType.Faith, 1),
 				_makeEventSuccess("Master the Nightmare", Enum.PolicyType.Science, 4)
 			]
 		),
 		_makeEvent(
-			"Battlegod", 
+			"Battlegod",
 			"A warrior from a neighboring community never seems to lose a conflict. They threaten your society.",
 			[
 				_makeEventFailure("Obsequiate", -2),
@@ -85,7 +85,7 @@ static func GetTrials():
 			]
 		),
 		_makeEvent(
-			"The Call of Better Things", 
+			"The Call of Better Things",
 			"A larger, more prosperous society offers membership to your people, splitting the community and threatening its cohesion.",
 			[
 				_makeEventFailure("Allow Dissolution", -2),
@@ -98,7 +98,7 @@ static func GetTrials():
 static func GetOpportunities():
 	return [
 		_makeEvent(
-			"Mines of Madness", 
+			"Mines of Madness",
 			"Cursed caves are opened to the surface, offering great rewards at the risk of a mind unmade.",
 			[
 				_makeEventFailure("Nothing at all", 0),
@@ -107,7 +107,7 @@ static func GetOpportunities():
 			]
 		),
 		_makeEvent(
-			"The Fruiting Titan", 
+			"The Fruiting Titan",
 			"The local wandering plant behemoth is bearing fruit for the first time in decades, drawing the eyes of everyone with an empty stomach or an eager mind.",
 			[
 				_makeEventFailure("Nothing at all", 0),
@@ -116,7 +116,7 @@ static func GetOpportunities():
 			]
 		),
 		_makeEvent(
-			"Mindblossom", 
+			"Mindblossom",
 			"A hallucinogenic invasive weed begins opening the minds of the community to realms and concepts beyond mortality.",
 			[
 				_makeEventFailure("Nothing at all", 0),
@@ -125,7 +125,7 @@ static func GetOpportunities():
 			]
 		),
 		_makeEvent(
-			"Bio-Loom", 
+			"Bio-Loom",
 			"A community member happens upon an ancient biome reseeder. Infinite possibilities for new life forms lie within its tattered cradle.",
 			[
 				_makeEventFailure("Nothing at all", 0),
@@ -134,7 +134,7 @@ static func GetOpportunities():
 			]
 		),
 		_makeEvent(
-			"Word of Fire", 
+			"Word of Fire",
 			"The dying breath of a mountain hermit brings knowledge of powerful pyromancy, fomenting covetousness and danger from all who hear of it.",
 			[
 				_makeEventFailure("Nothing at all", 0),
@@ -143,7 +143,7 @@ static func GetOpportunities():
 			]
 		),
 		_makeEvent(
-			"Instantial Apotheosis", 
+			"Instantial Apotheosis",
 			"One society member begins manifesting increasingly potent sorcerous abilities. Soon they will grow beyond anyone's control.",
 			[
 				_makeEventFailure("Nothing at all", 0),
@@ -152,7 +152,7 @@ static func GetOpportunities():
 			]
 		),
 		_makeEvent(
-			"The Weak Shall Disinherit", 
+			"The Weak Shall Disinherit",
 			"Wary refugees from a far-off war arrive, bearing strange technologies.",
 			[
 				_makeEventFailure("Nothing at all", 0),
@@ -161,7 +161,7 @@ static func GetOpportunities():
 			]
 		),
 		_makeEvent(
-			"Neodivinity", 
+			"Neodivinity",
 			"The world ripples with the creation of a new divine source, drawing potential adherents, avaricious eyes, and curious observers",
 			[
 				_makeEventFailure("Nothing at all", 0),
@@ -170,7 +170,7 @@ static func GetOpportunities():
 			]
 		),
 		_makeEvent(
-			"The Name of a Dragon", 
+			"The Name of a Dragon",
 			"A forgotten text reveals the true name of a dragon controlling a nearby peak.",
 			[
 				_makeEventFailure("Nothing at all", 0),
@@ -179,7 +179,7 @@ static func GetOpportunities():
 			]
 		),
 		_makeEvent(
-			"Land of Ash", 
+			"Land of Ash",
 			"The line between the lands of the living and the dead grows thin.",
 			[
 				_makeEventFailure("Nothing at all", 0),
@@ -204,16 +204,17 @@ static func _makeOutcome_base(name, hpChange, thresholds):
 static func _makeEventFailure(name, hpChange):
 	return _makeOutcome_base(name, hpChange, [])
 static func _makeEventSuccess(name, type, amount):
-	return _makeOutcome_base(name, amount, [{Type=type,Amount=amount}])
+	return _makeOutcome_base(name, amount, [ {Type = type, Amount = amount}])
 
 
+# TODO --> Not using once named events are incorporated
 static func GenerateEvent() -> GameEvent:
-	var keys_defined = Enum.PolicyType.keys().slice(1)
+	var keys_defined = Enum.PolicyType.keys().slice(2)
 	var type = Enum.PolicyType[keys_defined[randi() % keys_defined.size()]]
 	
 	var magnitude = 1 + (randi() % 4)
 	var name = "%s %s" % [
-		_adjectives[randi() % _adjectives.size()], 
+		_adjectives[randi() % _adjectives.size()],
 		_nouns[randi() % _nouns.size()]
 	]
 	return GameEvent.new(name, type, magnitude)
@@ -221,7 +222,7 @@ static func GenerateEvent() -> GameEvent:
 
 static func GetPolicyOptions(founding_type, quantity):
 	# get the types, except "undefined"
-	var type_values = Enum.PolicyType.values().slice(1)
+	var type_values = Enum.PolicyType.values().slice(2)
 	type_values.append(founding_type)
 	
 	var draft_options = []
@@ -239,30 +240,74 @@ static func GetStartingDeck(founding_type):
 	var num_wildcards = 1
 	var deck = []
 	
-	# get the types, except "undefined"
-	var type_values = Enum.PolicyType.values().slice(1)
+	# get the types, except "undefined" and "all"
+	var type_values = Enum.PolicyType.values().slice(2)
 	
 	for n in range(num_wildcards + 1):
-		deck.append(Policy.new(founding_type, type_values))
+		deck.append(Policy.new(founding_type, Enum.PolicyType.All))
 		
 	deck.append_array(_get_deck_helper(founding_type, type_values, num_basic_policies, num_active_policies))
 		
 	for i in range(type_values.size()):
 		var curr_type = type_values[i]
 		deck.append_array(_get_deck_helper(curr_type, type_values, num_basic_policies, num_active_policies))
-				
+	
+	# apply bespoke names
+	for i in range(deck.size()):
+		deck[i].Name = POLICY_NAME_LOOKUP[deck[i].Type][deck[i].ActivatedType]
+	
 	return deck
 static func _get_deck_helper(type, types, basic, active):
 	var working = []
 	for n in range(basic):
-		working.append(Policy.new(type, []))
+		working.append(Policy.new(type))
 	
 	for n in range(active):
 		for a in range(1, types.size()):
-			working.append(Policy.new(type, [types[a]]))
+			working.append(Policy.new(type, types[a]))
 	return working
 
-const _adjectives : Array[String] = [
+const POLICY_NAME_LOOKUP = {
+  Enum.PolicyType.Undefined: {
+	Enum.PolicyType.Undefined: "Despair",
+	Enum.PolicyType.All: "Spark of Hope"
+  },
+  Enum.PolicyType.Peace: {
+	Enum.PolicyType.Undefined: "Olive Branches",
+	Enum.PolicyType.Peace: "Harmony Above All",
+	Enum.PolicyType.War: "Plowshares and Swords",
+	Enum.PolicyType.Science: "Synergistic Focus",
+	Enum.PolicyType.Faith: "Greater Trust",
+	Enum.PolicyType.All: "The Cleverest Tongues"
+  },
+  Enum.PolicyType.War: {
+	Enum.PolicyType.Undefined: "War Footing",
+	Enum.PolicyType.Peace: "Sheep's Clothing",
+	Enum.PolicyType.War: "Victory Above All",
+	Enum.PolicyType.Science: "Sharper Edges",
+	Enum.PolicyType.Faith: "Just Cause",
+	Enum.PolicyType.All: "The World's a Nail"
+  },
+  Enum.PolicyType.Science: {
+	Enum.PolicyType.Undefined: "Curiosity",
+	Enum.PolicyType.Peace: "Still Waters Run Deep",
+	Enum.PolicyType.War: "Justifying Means",
+	Enum.PolicyType.Science: "Minds Ablaze",
+	Enum.PolicyType.Faith: "Divine Inspiration",
+	Enum.PolicyType.All: "A Tool for Everything"
+  },
+  Enum.PolicyType.Faith: {
+	Enum.PolicyType.Undefined: "Piety",
+	Enum.PolicyType.Peace: "Open Arms",
+	Enum.PolicyType.War: "Fervor",
+	Enum.PolicyType.Science: "Muse-Kissed",
+	Enum.PolicyType.Faith: "Souls of Purity",
+	Enum.PolicyType.All: "Force Majeure"
+  },
+}
+
+
+const _adjectives: Array[String] = [
 	"Red",
 	"Orange",
 	"Yellow",
@@ -286,7 +331,7 @@ const _adjectives : Array[String] = [
 	"Otherwordly"
 ]
 
-const _nouns : Array[String] = [
+const _nouns: Array[String] = [
 	"Children",
 	"Nightmares",
 	"Apparations",

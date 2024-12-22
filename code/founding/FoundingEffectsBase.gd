@@ -1,6 +1,7 @@
 class_name FoundingEffectsBase
 
-static func GetFoundingEffects(founding : Enum.PolicyType) -> FoundingEffectsBase:
+# provided to 
+static func GetFoundingEffects(founding: Enum.PolicyType) -> FoundingEffectsBase:
 	var map = {
 		Enum.PolicyType.War: FoundingEffects_War.new(),
 		Enum.PolicyType.Peace: FoundingEffects_Peace.new(),
@@ -11,17 +12,17 @@ static func GetFoundingEffects(founding : Enum.PolicyType) -> FoundingEffectsBas
 	
 # ================================================
 
-func MaxActivePolicyModifier(_game : Game) -> int:
+func MaxActivePolicyModifier(_game: Game) -> int:
 	return 0
 
-func ModifyEvent(_game : Game, event : GameEvent) -> GameEvent:
+func ModifyEvent(_game: Game, event: GameEvent) -> GameEvent:
 	return event
 
-func EventMagnitudeModifier(_game : Game) -> int:
+func EventMagnitudeModifier(_game: Game) -> int:
 	return 0
 
-func OnPolicyExpire(_game : Game, _policy : Policy):
+func OnPolicyExpire(_game: Game, _policy: Policy):
 	pass
 
-func OnPolicyDraft(_game : Game, _policy : Policy):
+func OnPolicyDraft(_game: Game, _policy: Policy):
 	pass

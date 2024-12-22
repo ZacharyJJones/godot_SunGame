@@ -2,7 +2,7 @@ extends FoundingEffectsBase
 
 class_name FoundingEffects_Faith
 
-func OnPolicyDraft(_game : Game, policy : Policy):
+func OnPolicyDraft(_game: Game, policy: Policy):
 	if policy.Type == Enum.PolicyType.Faith:
-		policy.ActivatedTypes = Enum.PolicyType.values().slice(1)
+		policy.ActivatedType = Enum.PolicyType.All
 	pass

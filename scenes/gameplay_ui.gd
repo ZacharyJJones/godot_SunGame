@@ -48,7 +48,7 @@ var active_policy_prefabs
 
 func _ready():
 	active_policy_prefabs = {}
-	for i in range(1, _enum_keys.size()):
+	for i in range(2, _enum_keys.size()):
 		var active_type_tracker = policy_type_display_prefab.instantiate()
 		active_policy_readout_area.add_child(active_type_tracker)
 		active_policy_prefabs[Enum.PolicyType[_enum_keys[i]]] = active_type_tracker
@@ -96,7 +96,7 @@ func RefreshUI_Society():
 	turns_readout.text = "%s / %s turns" % [game.Turn, game.Rules.TurnsToWin]
 	turns_bar.value = game.Turn
 	
-	for i in range(1, _enum_keys.size()):
+	for i in range(2, _enum_keys.size()):
 		var enum_val = Enum.PolicyType[_enum_keys[i]]
 		var amount = game.GetActivePolicyTypeMagnitude(enum_val)
 		active_policy_prefabs[enum_val].SetLabel(amount)
@@ -150,10 +150,13 @@ func RefreshUI_Etc():
 # ======================================================
 
 func _policy_as_str(policy : Policy):
-	var active_types = ""
-	if (policy.ActivatedTypes.size() > 0):
-		active_types = " (%s)" % ", ".join(policy.ActivatedTypes.map(func(x): return _enum_keys[x]))
-	return "%s%s" % [_enum_keys[policy.Type], active_types]
+	var keys_alt = Enum.PolicyType_Fancy.keys()
+	#var type_info = "%s" % [_enum_keys[policy.Type]]
+	var type_info = "%s" % [keys_alt[policy.Type]]
+	if (policy.ActivatedType != Enum.PolicyType.Undefined):
+		#type_info += " (%s)" % [_enum_keys[policy.ActivatedType]]
+		type_info += " (%s)" % [keys_alt[policy.ActivatedType]]
+	return type_info + " - " + policy.Name
 
 func _get_founding_effect_hint_text(type : Enum.PolicyType):
 	var map = {

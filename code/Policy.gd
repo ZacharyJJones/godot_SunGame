@@ -1,13 +1,15 @@
 class_name Policy
 
-var Type : Enum.PolicyType
-var ActivatedTypes : Array
-var HasBeenActivated : bool
+var Name: String
+var Type: Enum.PolicyType
+var ActivatedType: Enum.PolicyType
+var HasBeenActivated: bool
 
-func _init(type, activated = []):
+func _init(type, activated_type = Enum.PolicyType.Undefined):
+	Name = Enum.PolicyType.keys()[type]
 	Type = type
-	ActivatedTypes = activated
+	ActivatedType = activated_type
 	HasBeenActivated = false
 
 func CanBeActivated():
-	return not HasBeenActivated and ActivatedTypes.size() > 0
+	return !HasBeenActivated and ActivatedType != Enum.PolicyType.Undefined

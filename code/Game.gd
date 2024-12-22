@@ -1,31 +1,31 @@
 class_name Game
 
-var Health : int
-var Turn : int
-var State : Enum.GameState
+var Health: int
+var Turn: int
+var State: Enum.GameState
 
-var Rules : GameRules
+var Rules: GameRules
 
-var FoundingPolicy : Enum.PolicyType
-var FoundingEffects : FoundingEffectsBase
+var FoundingPolicy: Enum.PolicyType
+var FoundingEffects: FoundingEffectsBase
 
-var Deck : Array
-var Discard : Array
-var ActivePolicies : Array
-var RetiredPolicies : Array
+var Deck: Array
+var Discard: Array
+var ActivePolicies: Array
+var RetiredPolicies: Array
 
 # GameState.Policy
-var Policy_Choices : Array
-var Policy_SelectedIndex : int
+var Policy_Choices: Array
+var Policy_SelectedIndex: int
 
 # GameState.Event
-var Event_Current : GameEvent
-var Event_ActivatedPolicyIndices : Array
-var Event_Rerolls : int
+var Event_Current: GameEvent
+var Event_ActivatedPolicyIndices: Array
+var Event_Rerolls: int
 
 # ==================================
 
-func _init(rules : GameRules):
+func _init(rules: GameRules):
 	Rules = rules
 	
 	State = Enum.GameState.Undefined
@@ -50,13 +50,14 @@ func _init(rules : GameRules):
 
 func AdvanceState() -> bool:
 	var _state_map = {
-		Enum.GameState.Won: [func(): return false, func(): return],
-		Enum.GameState.Lost: [func(): return false, func(): return],
+		Enum.GameState.Won: [ func(): return false, func(): return ],
+		Enum.GameState.Lost: [ func(): return false, func(): return ],
 		
 		Enum.GameState.Founding: [_endState_Founding, _beginState_Setup],
 		Enum.GameState.Setup: [_endState_Setup, _beginState_Event],
+		
 		Enum.GameState.Policy: [_endState_Policy, _beginState_Event],
-		Enum.GameState.Event: [_endState_Event, _beginState_Policy]		
+		Enum.GameState.Event: [_endState_Event, _beginState_Policy]
 	}
 	
 	var result = false
@@ -67,11 +68,11 @@ func AdvanceState() -> bool:
 	# ... executing it's setup code when the game has ended. e.g. Draft choices
 	# ... will not be presented going from Event -> Won/Lost State -> Policy phase
 	if not IsOver():
-		if (Health >= Rules.Health_ToWin 
+		if (Health >= Rules.Health_ToWin
 			or Turn >= Rules.TurnsToWin):
 			State = Enum.GameState.Won
 		if Health <= 0:
-			State = Enum.GameState.Lost		
+			State = Enum.GameState.Lost
 		pass
 	
 	if result:
@@ -84,7 +85,7 @@ func _beginState_Founding():
 	State = Enum.GameState.Founding
 	Policy_SelectedIndex = -1
 	var vals = Enum.PolicyType.values()
-	for i in range(1, vals.size()):
+	for i in range(2, vals.size()):
 		Policy_Choices.append(Policy.new(vals[i]))
 	pass
 func _endState_Founding() -> bool:
@@ -95,7 +96,7 @@ func _endState_Founding() -> bool:
 	Discard.clear()
 	
 	# Take the choice and set as founding!
-	FoundingPolicy = ActivePolicies.pop_back().Type	
+	FoundingPolicy = ActivePolicies.pop_back().Type
 	FoundingEffects = FoundingEffectsBase.GetFoundingEffects(FoundingPolicy)
 	
 	# Now set up the deck
@@ -107,7 +108,7 @@ func _beginState_Setup():
 	_beginState_Policy()
 	State = Enum.GameState.Setup
 func _endState_Setup() -> bool:
-	if not _endState_Policy(): return false	
+	if not _endState_Policy(): return false
 	if ActivePolicies.size() < GetMaxActivePolicies():
 		_beginState_Setup()
 		return false
@@ -168,13 +169,13 @@ func _endState_Event() -> bool:
 
 # ==================================
 
-func GetActivePolicyTypeMagnitude(type : Enum.PolicyType):
+func GetActivePolicyTypeMagnitude(type: Enum.PolicyType):
 	var total = 0
 	for i in range(ActivePolicies.size()):
 		var policy = ActivePolicies[i]
-		if policy.Type == type:	total += 1
-		if policy.CanBeActivated() and Event_ActivatedPolicyIndices.any(func(x): return x == i):
-			total += policy.ActivatedTypes.filter(func(x): return x == type).size()
+		if policy.Type == type: total += 1
+		if not policy.HasBeenActivated and Event_ActivatedPolicyIndices.any(func(x): return x == i):
+			if policy.ActivatedType == type or policy.ActivatedType == Enum.PolicyType.All: total += 1
 	return total
 
 func RerollEvent():
@@ -187,7 +188,7 @@ func _generateEvent() -> GameEvent:
 
 # ==================================
 
-func EventMagnitudeWithModifiers() -> int: 
+func EventMagnitudeWithModifiers() -> int:
 	return Event_Current.Magnitude + FoundingEffects.EventMagnitudeModifier(self)
 
 func IsWon() -> bool: return State == Enum.GameState.Won
@@ -196,8 +197,3 @@ func IsOver() -> bool: return IsWon() or IsLost()
 
 func GetMaxActivePolicies() -> int:
 	return Rules.PolicyTrackSlots + FoundingEffects.MaxActivePolicyModifier(self)
-
-
-
-
-
