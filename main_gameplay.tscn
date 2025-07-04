@@ -1,0 +1,305 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkeu37ytymewe"]
+
+[ext_resource type="Texture2D" uid="uid://ba0ywtrb0fu88" path="res://icons/game_icons_net/tombstone.png" id="1_kji1v"]
+[ext_resource type="Texture2D" uid="uid://b8osqo4hd4ech" path="res://icons/game_icons_net/mighty-force.png" id="2_0xlv4"]
+[ext_resource type="Texture2D" uid="uid://p75baksldtnv" path="res://icons/game_icons_net/crown.png" id="2_ix1bw"]
+[ext_resource type="Texture2D" uid="uid://d0gkgtfalfcnn" path="res://icons/game_icons_net/sun-priest.png" id="3_ix1bw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ix1bw"]
+font_size = 11
+
+[node name="main_gameplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1
+
+[node name="HealthBar" type="HSlider" parent="Panel"]
+self_modulate = Color(0.988235, 0.266667, 0.521569, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = 12.0
+offset_right = 243.0
+offset_bottom = -11.8
+max_value = 25.0
+value = 10.0
+editable = false
+scrollable = false
+tick_count = 6
+
+[node name="LoseIcon" type="TextureRect" parent="Panel/HealthBar"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.005
+anchor_bottom = 0.5
+offset_left = -12.14
+offset_top = -19.7
+offset_right = 26.0114
+offset_bottom = 20.3
+grow_vertical = 2
+texture = ExtResource("1_kji1v")
+expand_mode = 3
+
+[node name="WinIcon" type="TextureRect" parent="Panel/HealthBar"]
+self_modulate = Color(0.921569, 0.780392, 0, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -23.86
+offset_top = -20.7
+offset_right = 16.14
+offset_bottom = 19.3
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_ix1bw")
+expand_mode = 3
+
+[node name="TurnsBar" type="HSlider" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -209.0
+offset_top = 24.0
+offset_right = -26.0
+offset_bottom = -24.8
+max_value = 25.0
+value = 10.0
+editable = false
+scrollable = false
+tick_count = 11
+
+[node name="WinIcon" type="TextureRect" parent="Panel/TurnsBar"]
+self_modulate = Color(0.921569, 0.780392, 0, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -23.86
+offset_top = -20.7
+offset_right = 16.14
+offset_bottom = 19.3
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_ix1bw")
+expand_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 59.0
+grow_horizontal = 2
+texture = ExtResource("3_ix1bw")
+expand_mode = 2
+
+[node name="Panel2" type="Panel" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.7
+
+[node name="Panel4" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.7
+
+[node name="Panel3" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel2" type="Panel" parent="Panel3"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.4
+offset_right = 183.0
+offset_bottom = 173.4
+
+[node name="TextureRect" type="TextureRect" parent="Panel3/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kji1v")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="Panel3"]
+layout_mode = 0
+offset_left = 217.0
+offset_top = 14.4
+offset_right = 382.0
+offset_bottom = 169.4
+
+[node name="TextureRect" type="TextureRect" parent="Panel3/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.339
+offset_left = 56.0
+offset_top = 8.39999
+offset_right = 55.998
+offset_bottom = 48.4
+texture = ExtResource("2_0xlv4")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Panel3/Panel"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 51.4
+offset_right = 103.0
+offset_bottom = 74.4
+text = "Name"
+
+[node name="Label2" type="Label" parent="Panel3/Panel"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 70.4
+offset_right = 103.0
+offset_bottom = 145.4
+text = "Description
+Description
+Description"
+
+[node name="Panel3" type="Panel" parent="Panel3"]
+layout_mode = 0
+offset_left = 421.0
+offset_top = 15.4
+offset_right = 586.0
+offset_bottom = 170.4
+
+[node name="TextureRect" type="TextureRect" parent="Panel3/Panel3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.339
+offset_left = 56.0
+offset_top = 8.39999
+offset_right = 55.998
+offset_bottom = 48.4
+texture = ExtResource("2_0xlv4")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Panel3/Panel3"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 51.4
+offset_right = 103.0
+offset_bottom = 74.4
+text = "Name"
+
+[node name="Label2" type="Label" parent="Panel3/Panel3"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 74.0
+offset_right = 157.0
+offset_bottom = 149.0
+text = "One look is all it takes to know that the world outside is greater than we can ever imagine"
+label_settings = SubResource("LabelSettings_ix1bw")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel4" type="Panel" parent="Panel3"]
+layout_mode = 0
+offset_left = 622.0
+offset_top = 18.4
+offset_right = 787.0
+offset_bottom = 173.4
+
+[node name="TextureRect" type="TextureRect" parent="Panel3/Panel4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.339
+offset_left = 56.0
+offset_top = 8.39999
+offset_right = 55.998
+offset_bottom = 48.4
+texture = ExtResource("2_0xlv4")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Panel3/Panel4"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 51.4
+offset_right = 103.0
+offset_bottom = 74.4
+text = "Name"
+
+[node name="Label2" type="Label" parent="Panel3/Panel4"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 70.4
+offset_right = 103.0
+offset_bottom = 145.4
+text = "Description
+Description
+Description"
+
+[node name="Panel5" type="Panel" parent="Panel3"]
+layout_mode = 0
+offset_left = 838.0
+offset_top = 18.4
+offset_right = 1003.0
+offset_bottom = 173.4
+
+[node name="TextureRect" type="TextureRect" parent="Panel3/Panel5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.339
+offset_left = 56.0
+offset_top = 8.39999
+offset_right = 55.998
+offset_bottom = 48.4
+texture = ExtResource("2_0xlv4")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Panel3/Panel5"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 51.4
+offset_right = 103.0
+offset_bottom = 74.4
+text = "Name"
+
+[node name="Label2" type="Label" parent="Panel3/Panel5"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 70.4
+offset_right = 103.0
+offset_bottom = 145.4
+text = "Description
+Description
+Description"

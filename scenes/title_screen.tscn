@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://cug8gqvnwrn3a"]
 
-[ext_resource type="Script" path="res://scenes/title_screen.gd" id="1_7x1ks"]
+[ext_resource type="Script" uid="uid://36rxcctvdlx5" path="res://scenes/title_screen.gd" id="1_7x1ks"]
 [ext_resource type="AudioStream" uid="uid://dldt62ia3rjuf" path="res://audio/songs/1-01. Elden Ring.mp3" id="1_vvkvo"]
 [ext_resource type="PackedScene" uid="uid://c1q5cv3tcu31b" path="res://scenes/ui_setting.tscn" id="3_oakgb"]
-[ext_resource type="Script" path="res://scenes/AnimationSkipper.gd" id="4_14lhs"]
+[ext_resource type="Script" uid="uid://biyqfjpy17w5i" path="res://scenes/AnimationSkipper.gd" id="4_14lhs"]
 
 [sub_resource type="Environment" id="Environment_w7smv"]
 background_mode = 1
@@ -89,8 +89,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jacnd"]
 _data = {
-"MoveCamOnLoad": SubResource("Animation_8lo7m"),
-"RESET": SubResource("Animation_0dufl")
+&"MoveCamOnLoad": SubResource("Animation_8lo7m"),
+&"RESET": SubResource("Animation_0dufl")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8p3rp"]
@@ -118,7 +118,7 @@ environment = SubResource("Environment_w7smv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera"]
 libraries = {
-"": SubResource("AnimationLibrary_jacnd")
+&"": SubResource("AnimationLibrary_jacnd")
 }
 autoplay = "MoveCamOnLoad"
 

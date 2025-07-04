@@ -10,7 +10,7 @@ var rules_dict
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rules_dict = inst_to_dict(GameRules.new())
-	var keys = rules_dict.keys().filter(func(k): return k[0] != "@")
+	var keys = rules_dict.keys().filter(func(k): return !k.begins_with("@"))
 	for i in range(keys.size()):
 		
 		var prefab = rules_setting_prefab.instantiate()

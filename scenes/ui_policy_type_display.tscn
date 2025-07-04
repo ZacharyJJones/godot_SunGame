@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bava33swlfwt"]
 
-[ext_resource type="Script" path="res://scenes/ui_policy_type_magnitude.gd" id="1_4mjih"]
+[ext_resource type="Script" uid="uid://cyuybqu1m0p1n" path="res://scenes/ui_policy_type_magnitude.gd" id="1_4mjih"]
 [ext_resource type="Texture2D" uid="uid://ba0ywtrb0fu88" path="res://icons/game_icons_net/tombstone.png" id="2_3snqo"]
 [ext_resource type="Texture2D" uid="uid://b8osqo4hd4ech" path="res://icons/game_icons_net/mighty-force.png" id="3_gc1ag"]
 [ext_resource type="Texture2D" uid="uid://c8mmu1tyn1qb1" path="res://icons/game_icons_net/peace-dove.png" id="4_ei70i"]
