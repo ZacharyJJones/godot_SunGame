@@ -193,4 +193,3 @@ func _on_active_policy_item_list_multi_selected(_index, _selected):
 		game.Event_ActivatedPolicyIndices = active_policy_item_list.get_selected_items()
 		RefreshUI_Society()
 		RefreshUI_Event()
-

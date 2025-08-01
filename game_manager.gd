@@ -3,6 +3,9 @@ extends Node3D
 @export var main_menu_scene : PackedScene
 @export var gameplay_scene : PackedScene
 
+@export var PolicyIcons : Array[CompressedTexture2D]
+@export var PolicyColors : Array[Color]
+
 var core : Game
 
 # Have a default in place for faster testing

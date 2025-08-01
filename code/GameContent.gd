@@ -270,7 +270,14 @@ static func _get_deck_helper(type, types, basic, active):
 const POLICY_NAME_LOOKUP = {
   Enum.PolicyType.Undefined: {
 	Enum.PolicyType.Undefined: "Despair",
-	Enum.PolicyType.All: "Spark of Hope"
+	Enum.PolicyType.All: "Spark of Hope",
+	
+	# These 4 shouldn't exist but I was getting an error when 
+	# ... applying bespoke names. So this is the quick fix.
+	#Enum.PolicyType.Peace: "Despair",
+	#Enum.PolicyType.War: "Despair",
+	#Enum.PolicyType.Science: "Despair",
+	#Enum.PolicyType.Faith: "Despair"
   },
   Enum.PolicyType.Peace: {
 	Enum.PolicyType.Undefined: "Olive Branches",

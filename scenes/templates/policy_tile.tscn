@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc7vaxakcxjbm"]
+
+[ext_resource type="Script" uid="uid://duj4hrp6bh5kg" path="res://scenes/templates/policy_tile.gd" id="1_boe25"]
+[ext_resource type="Texture2D" uid="uid://b8osqo4hd4ech" path="res://icons/game_icons_net/mighty-force.png" id="1_hx4uq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7a3kw"]
+font_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_ix1bw"]
+font_size = 11
+
+[node name="PolicyTile" type="Panel"]
+custom_minimum_size = Vector2(160, 160)
+offset_right = 160.0
+offset_bottom = 160.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_boe25")
+
+[node name="PolicyTypeImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_top = 0.05
+anchor_right = 0.66
+anchor_bottom = 0.3
+texture = ExtResource("1_hx4uq")
+expand_mode = 1
+
+[node name="PolicyTitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.3
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 0.0649986
+offset_top = -0.0600014
+offset_right = 0.0400009
+text = "Still Waters Run Deep"
+label_settings = SubResource("LabelSettings_7a3kw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PolicyDesc" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "One look is all it takes to know that the world outside is greater than we can ever imagine"
+label_settings = SubResource("LabelSettings_ix1bw")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

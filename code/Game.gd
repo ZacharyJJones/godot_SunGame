@@ -81,32 +81,30 @@ func AdvanceState() -> bool:
 	
 	return result
 
+# This one has some difficulty in showing which options are available
+# ... to the UI side of things. Unfortunately, the simplest way to do this
+# ... is to expect the UI to set the founding policy based on what is "known"
+# ... to be correct answers.
 func _beginState_Founding():
 	State = Enum.GameState.Founding
-	Policy_SelectedIndex = -1
-	var vals = Enum.PolicyType.values()
-	for i in range(2, vals.size()):
-		Policy_Choices.append(Policy.new(vals[i]))
-	pass
 func _endState_Founding() -> bool:
-	if not _endState_Policy():
+	if (FoundingPolicy == Enum.PolicyType.Undefined):
 		return false
 	
-	# cleanup, since I hacked the policy phase to do this
-	Discard.clear()
-	
-	# Take the choice and set as founding!
-	FoundingPolicy = ActivePolicies.pop_back().Type
+	# Apply choice and set up the deck.
 	FoundingEffects = FoundingEffectsBase.GetFoundingEffects(FoundingPolicy)
-	
-	# Now set up the deck
 	Deck = GameContent.GetStartingDeck(FoundingPolicy)
 	Deck.shuffle()
 	return true
 
+	# piggyback on common functionality from policy drafting...
+	# ... but claim gamestate as in setup phase
 func _beginState_Setup():
 	_beginState_Policy()
 	State = Enum.GameState.Setup
+	
+	# TODO modify policies to use the pregame names here
+	pass
 func _endState_Setup() -> bool:
 	if not _endState_Policy(): return false
 	if ActivePolicies.size() < GetMaxActivePolicies():

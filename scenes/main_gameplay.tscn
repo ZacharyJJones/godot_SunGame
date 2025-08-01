@@ -1,0 +1,381 @@
+[gd_scene load_steps=15 format=3 uid="uid://bkeu37ytymewe"]
+
+[ext_resource type="Texture2D" uid="uid://ba0ywtrb0fu88" path="res://icons/game_icons_net/tombstone.png" id="1_kji1v"]
+[ext_resource type="Script" uid="uid://5g0rwhloprlm" path="res://scenes/main_gameplay.gd" id="1_lmg8j"]
+[ext_resource type="Texture2D" uid="uid://p75baksldtnv" path="res://icons/game_icons_net/crown.png" id="2_ix1bw"]
+[ext_resource type="Texture2D" uid="uid://d0gkgtfalfcnn" path="res://icons/game_icons_net/sun-priest.png" id="3_ix1bw"]
+[ext_resource type="PackedScene" uid="uid://dc7vaxakcxjbm" path="res://scenes/templates/policy_tile.tscn" id="4_ix1bw"]
+[ext_resource type="Texture2D" uid="uid://btur6hwa3uw3x" path="res://icons/game_icons_net/heart-wings.png" id="5_7a3kw"]
+[ext_resource type="Texture2D" uid="uid://b8osqo4hd4ech" path="res://icons/game_icons_net/mighty-force.png" id="6_4658i"]
+[ext_resource type="Texture2D" uid="uid://c8mmu1tyn1qb1" path="res://icons/game_icons_net/peace-dove.png" id="7_hfa5i"]
+[ext_resource type="Texture2D" uid="uid://cw7pvxlgguj5o" path="res://icons/game_icons_net/erlenmeyer.png" id="8_njxfe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o6k8n"]
+outline_size = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_nnxur"]
+font_size = 30
+font_color = Color(0.8, 0.160784, 0.160784, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jh0gp"]
+font_size = 30
+font_color = Color(0.372549, 0.8, 0.160784, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_58ik7"]
+font_size = 30
+font_color = Color(0.160784, 0.705882, 0.8, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fj2an"]
+font_size = 30
+font_color = Color(0.682353, 0.160784, 0.8, 1)
+
+[node name="main_gameplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lmg8j")
+ActivePolicyTemplate = ExtResource("4_ix1bw")
+
+[node name="SocietyBar" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1
+
+[node name="HealthBar" type="HSlider" parent="SocietyBar"]
+self_modulate = Color(0.988235, 0.266667, 0.521569, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = 12.0
+offset_right = 243.0
+offset_bottom = -11.8
+max_value = 25.0
+value = 10.0
+editable = false
+scrollable = false
+tick_count = 6
+
+[node name="LoseIcon" type="TextureRect" parent="SocietyBar/HealthBar"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.005
+anchor_bottom = 0.5
+offset_left = -12.14
+offset_top = -19.7
+offset_right = 26.0114
+offset_bottom = 20.3
+grow_vertical = 2
+texture = ExtResource("1_kji1v")
+expand_mode = 3
+
+[node name="WinIcon" type="TextureRect" parent="SocietyBar/HealthBar"]
+self_modulate = Color(0.921569, 0.780392, 0, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -23.86
+offset_top = -20.7
+offset_right = 16.14
+offset_bottom = 19.3
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_ix1bw")
+expand_mode = 3
+
+[node name="FoundingPolicyIcon" type="TextureRect" parent="SocietyBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.05
+anchor_right = 0.5
+anchor_bottom = 0.95
+grow_horizontal = 2
+texture = ExtResource("3_ix1bw")
+expand_mode = 2
+
+[node name="TurnsBar" type="HSlider" parent="SocietyBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -209.0
+offset_top = 24.0
+offset_right = -26.0
+offset_bottom = -24.8
+max_value = 25.0
+value = 10.0
+editable = false
+scrollable = false
+tick_count = 11
+
+[node name="WinIcon" type="TextureRect" parent="SocietyBar/TurnsBar"]
+self_modulate = Color(0.921569, 0.780392, 0, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -23.86
+offset_top = -20.7
+offset_right = 16.14
+offset_bottom = 19.3
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_ix1bw")
+expand_mode = 3
+
+[node name="FoundingSocietyView" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.11
+anchor_right = 1.0
+anchor_bottom = 0.69
+offset_bottom = -3.05176e-05
+
+[node name="Label" type="Label" parent="FoundingSocietyView"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.14
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+text = "--==-= CHOOSE YOUR FOUNDING POLICY =-==--"
+label_settings = SubResource("LabelSettings_o6k8n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="FoundingSocietyView"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.15
+anchor_right = 0.99
+anchor_bottom = 0.99
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="War" type="Button" parent="FoundingSocietyView/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="FoundingSocietyView/HBox/War"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+CATENA
+( War )"
+label_settings = SubResource("LabelSettings_nnxur")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="FoundingSocietyView/HBox/War"]
+modulate = Color(0.8, 0.160784, 0.160784, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -112.12
+offset_right = 50.0
+offset_bottom = -12.12
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_4658i")
+expand_mode = 3
+
+[node name="Peace" type="Button" parent="FoundingSocietyView/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="FoundingSocietyView/HBox/Peace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+Symphren
+( Peace )"
+label_settings = SubResource("LabelSettings_jh0gp")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="FoundingSocietyView/HBox/Peace"]
+modulate = Color(0.372549, 0.8, 0.160784, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -112.12
+offset_right = 50.0
+offset_bottom = -12.12
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("7_hfa5i")
+expand_mode = 3
+
+[node name="Science" type="Button" parent="FoundingSocietyView/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="FoundingSocietyView/HBox/Science"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+Ergopoei
+( Science )"
+label_settings = SubResource("LabelSettings_58ik7")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="FoundingSocietyView/HBox/Science"]
+modulate = Color(0.160784, 0.705882, 0.8, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -112.12
+offset_right = 50.0
+offset_bottom = -12.12
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("8_njxfe")
+expand_mode = 3
+
+[node name="Faith" type="Button" parent="FoundingSocietyView/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="FoundingSocietyView/HBox/Faith"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+Inravok
+( Faith )"
+label_settings = SubResource("LabelSettings_fj2an")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="FoundingSocietyView/HBox/Faith"]
+modulate = Color(0.682353, 0.160784, 0.8, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -112.12
+offset_right = 50.0
+offset_bottom = -12.12
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_ix1bw")
+expand_mode = 3
+
+[node name="PolicyDraftView" type="Panel" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.7
+
+[node name="EventOutcomeView" type="Panel" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.7
+
+[node name="PolicyTrack" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PolicyEndIcon" type="TextureRect" parent="PolicyTrack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.5
+anchor_right = 0.1
+anchor_bottom = 0.5
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("1_kji1v")
+expand_mode = 5
+
+[node name="ActivePolicyHbox" type="HBoxContainer" parent="PolicyTrack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_right = 0.95
+anchor_bottom = 1.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="PolicyTile" parent="PolicyTrack/ActivePolicyHbox" instance=ExtResource("4_ix1bw")]
+layout_mode = 2
+
+[node name="PolicyTile2" parent="PolicyTrack/ActivePolicyHbox" instance=ExtResource("4_ix1bw")]
+layout_mode = 2
+
+[node name="PolicyTile3" parent="PolicyTrack/ActivePolicyHbox" instance=ExtResource("4_ix1bw")]
+layout_mode = 2
+
+[node name="PolicyTile4" parent="PolicyTrack/ActivePolicyHbox" instance=ExtResource("4_ix1bw")]
+layout_mode = 2
+
+[node name="PolicyTile5" parent="PolicyTrack/ActivePolicyHbox" instance=ExtResource("4_ix1bw")]
+layout_mode = 2
+
+[node name="PolicyStartIcon" type="TextureRect" parent="PolicyTrack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.5
+anchor_right = 0.98
+anchor_bottom = 0.5
+offset_top = -28.8
+offset_bottom = 28.8
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("5_7a3kw")
+expand_mode = 5

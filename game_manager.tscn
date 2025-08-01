@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyyjngx3e5ddc"]
+[gd_scene load_steps=10 format=3 uid="uid://dyyjngx3e5ddc"]
 
 [ext_resource type="Script" uid="uid://bonmn5ssie4wx" path="res://game_manager.gd" id="1_4p2jf"]
-[ext_resource type="PackedScene" uid="uid://cwj60j6dcj765" path="res://scenes/basic_gameplay.tscn" id="2_emg4f"]
 [ext_resource type="PackedScene" uid="uid://cug8gqvnwrn3a" path="res://scenes/title_screen.tscn" id="2_t07nj"]
+[ext_resource type="PackedScene" uid="uid://bkeu37ytymewe" path="res://scenes/main_gameplay.tscn" id="3_gth8u"]
+[ext_resource type="Texture2D" uid="uid://ba0ywtrb0fu88" path="res://icons/game_icons_net/tombstone.png" id="4_vk86k"]
+[ext_resource type="Texture2D" uid="uid://deboq4fyq3lme" path="res://icons/game_icons_net/graduate-cap.png" id="5_shwjl"]
+[ext_resource type="Texture2D" uid="uid://b8osqo4hd4ech" path="res://icons/game_icons_net/mighty-force.png" id="6_gth8u"]
+[ext_resource type="Texture2D" uid="uid://c8mmu1tyn1qb1" path="res://icons/game_icons_net/peace-dove.png" id="7_dq8jp"]
+[ext_resource type="Texture2D" uid="uid://cw7pvxlgguj5o" path="res://icons/game_icons_net/erlenmeyer.png" id="8_yawsv"]
+[ext_resource type="Texture2D" uid="uid://d0gkgtfalfcnn" path="res://icons/game_icons_net/sun-priest.png" id="9_le433"]
 
 [node name="GameManager" type="Node3D"]
 script = ExtResource("1_4p2jf")
 main_menu_scene = ExtResource("2_t07nj")
-gameplay_scene = ExtResource("2_emg4f")
+gameplay_scene = ExtResource("3_gth8u")
+PolicyIcons = Array[CompressedTexture2D]([ExtResource("4_vk86k"), ExtResource("5_shwjl"), ExtResource("6_gth8u"), ExtResource("7_dq8jp"), ExtResource("8_yawsv"), ExtResource("9_le433")])
+PolicyColors = Array[Color]([Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0.8, 0.160784, 0.160784, 1), Color(0.372549, 0.8, 0.160784, 1), Color(0.160784, 0.705882, 0.8, 1), Color(0.682353, 0.160784, 0.8, 1)])
