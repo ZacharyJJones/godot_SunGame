@@ -137,6 +137,7 @@ texture = ExtResource("2_ix1bw")
 expand_mode = 3
 
 [node name="FoundingSocietyView" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.11
@@ -173,18 +174,29 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="FoundingSocietyView/HBox/War"]
+[node name="Title" type="Label" parent="FoundingSocietyView/HBox/War"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "
-CATENA
+text = "CATENA
 ( War )"
 label_settings = SubResource("LabelSettings_nnxur")
 horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="FoundingSocietyView/HBox/War"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Text sdesidfusd fds ifs e idsaudfedbusnfdsbfdsb"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="FoundingSocietyView/HBox/War"]
 modulate = Color(0.8, 0.160784, 0.160784, 1)
@@ -207,18 +219,29 @@ expand_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="FoundingSocietyView/HBox/Peace"]
+[node name="Title" type="Label" parent="FoundingSocietyView/HBox/Peace"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "
-Symphren
+text = "Symphren
 ( Peace )"
 label_settings = SubResource("LabelSettings_jh0gp")
 horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="FoundingSocietyView/HBox/Peace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Text sdesidfusd fds ifs e idsaudfedbusnfdsbfdsb"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="FoundingSocietyView/HBox/Peace"]
 modulate = Color(0.372549, 0.8, 0.160784, 1)
@@ -241,18 +264,29 @@ expand_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="FoundingSocietyView/HBox/Science"]
+[node name="Title" type="Label" parent="FoundingSocietyView/HBox/Science"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "
-Ergopoei
+text = "Ergopoei
 ( Science )"
 label_settings = SubResource("LabelSettings_58ik7")
 horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="FoundingSocietyView/HBox/Science"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Text sdesidfusd fds ifs e idsaudfedbusnfdsbfdsb"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="FoundingSocietyView/HBox/Science"]
 modulate = Color(0.160784, 0.705882, 0.8, 1)
@@ -275,18 +309,29 @@ expand_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="FoundingSocietyView/HBox/Faith"]
+[node name="Title" type="Label" parent="FoundingSocietyView/HBox/Faith"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "
-Inravok
+text = "Inravok
 ( Faith )"
 label_settings = SubResource("LabelSettings_fj2an")
 horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="FoundingSocietyView/HBox/Faith"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Text sdesidfusd fds ifs e idsaudfedbusnfdsbfdsb"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="FoundingSocietyView/HBox/Faith"]
 modulate = Color(0.682353, 0.160784, 0.8, 1)
@@ -306,22 +351,66 @@ texture = ExtResource("3_ix1bw")
 expand_mode = 3
 
 [node name="PolicyDraftView" type="Panel" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.1
+anchor_top = 0.11
 anchor_right = 1.0
-anchor_bottom = 0.7
+anchor_bottom = 0.69
+
+[node name="Label" type="Label" parent="PolicyDraftView"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.14
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+text = "--==-= DRAFT A NEW POLICY =-==--"
+label_settings = SubResource("LabelSettings_o6k8n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBox_Policies" type="HBoxContainer" parent="PolicyDraftView"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.15
+anchor_right = 0.99
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="PolicyTile" parent="PolicyDraftView/HBox_Policies" instance=ExtResource("4_ix1bw")]
+layout_mode = 2
+
+[node name="HBox_Buttons" type="HBoxContainer" parent="PolicyDraftView"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.8
+anchor_right = 0.99
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Button" type="Button" parent="PolicyDraftView/HBox_Buttons"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "SELECT"
 
 [node name="EventOutcomeView" type="Panel" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.1
+anchor_top = 0.11
 anchor_right = 1.0
-anchor_bottom = 0.7
+anchor_bottom = 0.69
 
 [node name="PolicyTrack" type="Panel" parent="."]
 layout_mode = 1
@@ -342,28 +431,35 @@ mouse_filter = 0
 texture = ExtResource("1_kji1v")
 expand_mode = 5
 
-[node name="ActivePolicyHbox" type="HBoxContainer" parent="PolicyTrack"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PolicyTrack"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.05
-anchor_right = 0.95
+anchor_left = 0.1
+anchor_right = 0.9
 anchor_bottom = 1.0
+vertical_scroll_mode = 0
+
+[node name="ActivePolicyHbox" type="HBoxContainer" parent="PolicyTrack/ScrollContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="PolicyTile" parent="PolicyTrack/ActivePolicyHbox" instance=ExtResource("4_ix1bw")]
+[node name="PolicyTile" parent="PolicyTrack/ScrollContainer/ActivePolicyHbox" instance=ExtResource("4_ix1bw")]
 layout_mode = 2
 
-[node name="PolicyTile2" parent="PolicyTrack/ActivePolicyHbox" instance=ExtResource("4_ix1bw")]
+[node name="PolicyTile2" parent="PolicyTrack/ScrollContainer/ActivePolicyHbox" instance=ExtResource("4_ix1bw")]
 layout_mode = 2
 
-[node name="PolicyTile3" parent="PolicyTrack/ActivePolicyHbox" instance=ExtResource("4_ix1bw")]
+[node name="PolicyTile3" parent="PolicyTrack/ScrollContainer/ActivePolicyHbox" instance=ExtResource("4_ix1bw")]
 layout_mode = 2
 
-[node name="PolicyTile4" parent="PolicyTrack/ActivePolicyHbox" instance=ExtResource("4_ix1bw")]
+[node name="PolicyTile4" parent="PolicyTrack/ScrollContainer/ActivePolicyHbox" instance=ExtResource("4_ix1bw")]
 layout_mode = 2
 
-[node name="PolicyTile5" parent="PolicyTrack/ActivePolicyHbox" instance=ExtResource("4_ix1bw")]
+[node name="PolicyTile5" parent="PolicyTrack/ScrollContainer/ActivePolicyHbox" instance=ExtResource("4_ix1bw")]
 layout_mode = 2
 
 [node name="PolicyStartIcon" type="TextureRect" parent="PolicyTrack"]

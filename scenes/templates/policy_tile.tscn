@@ -20,12 +20,34 @@ script = ExtResource("1_boe25")
 [node name="PolicyTypeImage" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.33
+anchor_left = 0.5
 anchor_top = 0.05
-anchor_right = 0.66
+anchor_right = 0.5
 anchor_bottom = 0.3
+grow_horizontal = 2
 texture = ExtResource("1_hx4uq")
-expand_mode = 1
+expand_mode = 3
+
+[node name="PolicyActivateButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.82
+anchor_top = 0.02
+anchor_right = 0.98
+anchor_bottom = 0.18
+grow_horizontal = 0
+
+[node name="PolicyTypeImage" type="TextureRect" parent="PolicyActivateButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_hx4uq")
+expand_mode = 3
 
 [node name="PolicyTitle" type="Label" parent="."]
 layout_mode = 1

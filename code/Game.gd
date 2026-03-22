@@ -103,7 +103,12 @@ func _beginState_Setup():
 	_beginState_Policy()
 	State = Enum.GameState.Setup
 	
-	# TODO modify policies to use the pregame names here
+	for i in range(Policy_Choices.size()):
+		var current = Policy_Choices[i]
+		current.ActivatedType = Enum.PolicyType.Undefined
+		current.Name = GameContent.SETUP_POLICY_NAME_LOOKUP[current.Type][current.ActivatedType]
+		current.Desc = GameContent.SETUP_POLICY_DESC_LOOKUP[current.Type][current.ActivatedType]
+	
 	pass
 func _endState_Setup() -> bool:
 	if not _endState_Policy(): return false

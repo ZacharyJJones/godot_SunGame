@@ -1,6 +1,7 @@
 class_name Policy
 
 var Name: String
+var Desc : String
 var Type: Enum.PolicyType
 var ActivatedType: Enum.PolicyType
 var HasBeenActivated: bool

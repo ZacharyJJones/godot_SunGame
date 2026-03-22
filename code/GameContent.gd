@@ -255,6 +255,7 @@ static func GetStartingDeck(founding_type):
 	# apply bespoke names
 	for i in range(deck.size()):
 		deck[i].Name = POLICY_NAME_LOOKUP[deck[i].Type][deck[i].ActivatedType]
+		deck[i].Desc = POLICY_DESC_LOOKUP[deck[i].Type][deck[i].ActivatedType]
 	
 	return deck
 static func _get_deck_helper(type, types, basic, active):
@@ -270,14 +271,7 @@ static func _get_deck_helper(type, types, basic, active):
 const POLICY_NAME_LOOKUP = {
   Enum.PolicyType.Undefined: {
 	Enum.PolicyType.Undefined: "Despair",
-	Enum.PolicyType.All: "Spark of Hope",
-	
-	# These 4 shouldn't exist but I was getting an error when 
-	# ... applying bespoke names. So this is the quick fix.
-	#Enum.PolicyType.Peace: "Despair",
-	#Enum.PolicyType.War: "Despair",
-	#Enum.PolicyType.Science: "Despair",
-	#Enum.PolicyType.Faith: "Despair"
+	Enum.PolicyType.All: "Spark of Hope"
   },
   Enum.PolicyType.Peace: {
 	Enum.PolicyType.Undefined: "Olive Branches",
@@ -313,6 +307,75 @@ const POLICY_NAME_LOOKUP = {
   },
 }
 
+const POLICY_DESC_LOOKUP = {
+  Enum.PolicyType.Undefined: {
+	Enum.PolicyType.Undefined: "Dust to dust and hopes to ash",
+	Enum.PolicyType.All: "With enough luck and grit, tomorrow may be better than today"
+  },
+  Enum.PolicyType.Peace: {
+	Enum.PolicyType.Undefined: "The core of every civilization is a gift truly given",
+	Enum.PolicyType.Peace: "Nothing can stand before a crowd that moves as one",
+	Enum.PolicyType.War: "Mighty is the people who are capable with both",
+	Enum.PolicyType.Science: "Cooperation has ever been the sinew of progress",
+	Enum.PolicyType.Faith: "A list of allies need not be confined to three-dimensional beings",
+	Enum.PolicyType.All: "Words sway reality as surely as gravity"
+  },
+  Enum.PolicyType.War: {
+	Enum.PolicyType.Undefined: "Every triumph begins with a single step",
+	Enum.PolicyType.Peace: "Beware red hunger in the eyes of a lamb",
+	Enum.PolicyType.War: "The only thing that has ever mattered, in the end",
+	Enum.PolicyType.Science: "There is always a better knife",
+	Enum.PolicyType.Faith: "Let the sword divide truth and lies",
+	Enum.PolicyType.All: "And I'm the hammer"
+  },
+  Enum.PolicyType.Science: {
+	Enum.PolicyType.Undefined: "Question, as though your existence depends on it",
+	Enum.PolicyType.Peace: "Innovation's voice is easiest heard in stillness",
+	Enum.PolicyType.War: "Those who stand in the way of progress will find themselves beneath its boot",
+	Enum.PolicyType.Science: "Knowledge for knowledge's sake is a spring that never dries",
+	Enum.PolicyType.Faith: "Where else could a breakthrough this great have come from?",
+	Enum.PolicyType.All: "The only limit to technology is the user's lack of imagination"
+  },
+  Enum.PolicyType.Faith: {
+	Enum.PolicyType.Undefined: "Right action is the surest path to right ends",
+	Enum.PolicyType.Peace: "There is room for all",
+	Enum.PolicyType.War: "Those who refuse to see the world as it truly is will receive a harder education",
+	Enum.PolicyType.Science: "We are ever driven forward by things we do not understand",
+	Enum.PolicyType.Faith: "The unshakeable roots of divinity lie deeper than any mountain",
+	Enum.PolicyType.All: "Nothing is beyond the reach of the universe"
+  },
+}
+
+
+const SETUP_POLICY_NAME_LOOKUP = {
+  Enum.PolicyType.Peace: {
+	Enum.PolicyType.Undefined: "An Open Hand"
+  },
+  Enum.PolicyType.War: {
+	Enum.PolicyType.Undefined: "Sharpened Sticks"
+  },
+  Enum.PolicyType.Science: {
+	Enum.PolicyType.Undefined: "Dreams of Truth"
+  },
+  Enum.PolicyType.Faith: {
+	Enum.PolicyType.Undefined: "An Outward Gaze"
+  }
+}
+
+const SETUP_POLICY_DESC_LOOKUP = {
+  Enum.PolicyType.Peace: {
+	Enum.PolicyType.Undefined: "A modest start to something grand"
+  },
+  Enum.PolicyType.War: {
+	Enum.PolicyType.Undefined: "The first tool, in this or any age"
+  },
+  Enum.PolicyType.Science: {
+	Enum.PolicyType.Undefined: "What the mind can conceive, the people will achieve"
+  },
+  Enum.PolicyType.Faith: {
+	Enum.PolicyType.Undefined: "One look is all it takes to know that the world outside is greater than we can ever imagine"
+  }
+}
 
 const _adjectives: Array[String] = [
 	"Red",
